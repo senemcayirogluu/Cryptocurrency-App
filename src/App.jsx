@@ -1,34 +1,41 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { Routes, Route, Link } from 'react-router-dom'
+import { Navbar, Homepage, Exchanges, Cryptocurrencies, CryptoDetails, News } from './components'
+import { Layout, Space, Typography } from 'antd'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='app'>
+      <div className='navbar'>
+        <Navbar />
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div className='main'>
+        <Layout>
+          <div className='routes'>
+            <Routes>
+              <Route exact path='/' element={<Homepage />}></Route>
+              <Route exact path='/exchanges' element={<Exchanges />}></Route>
+              <Route exact path='/cryptocurrencies' element={<Cryptocurrencies />}></Route>
+              <Route exact path='/crptocurrency/:coinId' element={<CryptoDetails />}></Route>
+              <Route exact path='/news' element={<News />}></Route>
+            </Routes>
+          </div>
+        </Layout>
+        <div className='footer'>
+          <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>
+            Cryptoverse <br />
+            All rights reserved
+          </Typography.Title>
+          <Space>
+            <Link to='/'>Home</Link>
+            <Link to='/exchanges'>Exchanges</Link>
+            <Link to='/cryptocurrencies'>Cryptocurrencies</Link>
+            <Link to='/news'>News</Link>
+          </Space>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
