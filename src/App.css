@@ -296,6 +296,7 @@ a:hover{
 .news-image-container{
     display: flex !important;
     justify-content: space-between !important;
+    flex-wrap: wrap;
 }
 .news-title{
 width: 70%;
