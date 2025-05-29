@@ -12,7 +12,7 @@ export const cryptoNewsApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: 'https://cryptocurrency-news2.p.rapidapi.com' }),
     endpoints: (builder) => ({
         getCryptoNews: builder.query({
-            query: ({ cryptoDaily, count }) => createRequest(`/v1/cryptodaily?limit=${count}`),
+            query: ({ cryptoDaily, count }) => createRequest(`/v1/cryptodaily?crypto=${cryptoDaily}&limit=${count}`),
         }),
     }),
 })
