@@ -10,8 +10,8 @@ import Loader from './Loader'
 const { Title } = Typography
 
 const Homepage = () => {
-  const { data, isFetching } = useGetCryptosQuery(1);
-  const globalStats = data?.data;
+  const { data, isFetching } = useGetCryptosQuery(10);
+  const globalStats = data?.data?.stats;
 
   console.log(data);
 
@@ -22,19 +22,14 @@ const Homepage = () => {
     <>
       <Title level={2} className='heading'>Global Crypto Stats</Title>
       <Row>
-        <Col span={12}><Statistic title="Total Cryptocurrencies" value={globalStats.totalCoins} /></Col>
+        <Col span={12}><Statistic title="Total Cryptocurrencies" value={globalStats.total} /></Col>
         <Col span={12}><Statistic title="Total Exchanges" value={globalStats.totalExchanges} /></Col>
         <Col span={12}><Statistic title="Total Market Cap" value={millify(globalStats.totalMarketCap)} /></Col>
         <Col span={12}><Statistic title="Total 24h Volume" value={millify(globalStats.total24hVolume)} /></Col>
         <Col span={12}><Statistic title="Total Markets" value={globalStats.totalMarkets} /></Col>
       </Row>
-      <br />
-      <Row>
-        <Col span={12}><Statistic title="Btc Dominance" value={millify(globalStats.btcDominance)} /></Col>
-        <Col span={12}><Statistic title="Btc Market Cap" value={millify(globalStats.btcMarketCap)} /></Col>
-      </Row>
       <div className='home-heading-container'>
-        <Title level={2} className='home-title'>Top 3 Cryptocurrencies in the world</Title>
+        <Title level={2} className='home-title'>Top 10 Cryptocurrencies in the world</Title>
         <Title level={3} className='show-more'><Link to="/cryptocurrencies">Show More</Link></Title>
       </div>
       <Cryptocurrencies simplified />
